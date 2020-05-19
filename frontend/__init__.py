@@ -12,14 +12,22 @@ def create_app(test_config=None):
     def home():
         return render_template('home.html.j2')
 
+    # Handle message from javascript client and send broadcast
     @socketio.on('message')
     def handle_message(message):
         print('received message: ' + message)
+        socketio.emit('broadcast', message)     # This will go to all clients
 
+    # Handle and send message from javascript client
     @socketio.on('add')
     def handle_add(data):
         print(data)
         data = data + 1
         emit('sum', data)
+
+    # Handle messages from python client
+    @socketio.on('client')
+    def handle_client(message):
+        print(message)
 
     return app

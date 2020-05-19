@@ -2,11 +2,9 @@ var socket = io();
 
 function turnOn() {
     socket.emit('message', "Button ON pressed!");
-    console.log("Button on pressed!");
 }
 function turnOff() {
     socket.emit('message', "Button OFF pressed!");
-    console.log("Button off pressed!");
 }
 function addOne() {
     socket.emit('add', parseInt(document.getElementById("addButton").innerHTML));
