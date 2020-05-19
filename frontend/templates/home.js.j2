@@ -1,6 +1,17 @@
+var socket = io();
+
 function turnOn() {
-    console.log("Button on pressed!")
+    socket.emit('message', "Button ON pressed!");
+    console.log("Button on pressed!");
 }
 function turnOff() {
-    console.log("Button off pressed!")
+    socket.emit('message', "Button OFF pressed!");
+    console.log("Button off pressed!");
 }
+function addOne() {
+    socket.emit('add', parseInt(document.getElementById("addButton").innerHTML));
+}
+
+socket.on('sum', function(data) {
+    document.getElementById("addButton").innerHTML = data;
+})
