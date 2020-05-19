@@ -1,15 +1,12 @@
-var socket = io();
+var socket = io();    // Auto-discovery
 
 function turnOn() {
-    socket.emit('message', "Button ON pressed!");
+    // What to do if "on" button is pressed
+    socket.emit('ledState', 1);    // Send the next state to the server
+    document.getElementById("indicator").innerHTML = "The LED is ON!";
 }
 function turnOff() {
-    socket.emit('message', "Button OFF pressed!");
+    // What to do if "off" button is pressed
+    socket.emit('ledState', 0);    // Send the next state to the server
+    document.getElementById("indicator").innerHTML = "The LED is OFF!";
 }
-function addOne() {
-    socket.emit('add', parseInt(document.getElementById("addButton").innerHTML));
-}
-
-socket.on('sum', function(data) {
-    document.getElementById("addButton").innerHTML = data;
-})

@@ -4,14 +4,15 @@
 
 {% block head %}
 {{ super() }} <!-- Inherit base header -->
+<!-- Include SocketIO for JavaScript -->
 <script src="//cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js" integrity="sha256-yr4fRk/GU1ehYJPAs8P4JlTgu0Hdsp4ZKrx8bDEDC3I=" crossorigin="anonymous"></script>
 {% endblock %}
 
 {% block content %}
-<h1>This is the home page!</h1>
+<h1>Turn the LED on and off!</h1>
 
 <div class="btn-group btn-group-toggle" data-toggle="buttons">
-    <label class="btn btn-secondary active">
+    <label class="btn btn-secondary">
         <input type="radio" name="options" id="on" onclick="turnOn()"> ON
     </label>
     <label class="btn btn-secondary">
@@ -19,7 +20,7 @@
     </label>
 </div>
 
-<button type="button" class="btn btn-light" id = addButton onclick="addOne()">0</button>
+<h1 id="indicator">The LED is OFF!</h1>
 
 <script type="text/javascript" charset="utf-8">
     {% include 'home.js.j2' %}
