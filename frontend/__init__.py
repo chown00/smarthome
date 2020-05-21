@@ -9,8 +9,18 @@ def create_app(test_config=None):
 
     @app.route('/')
     def home():
-        ''' Create homepage. '''
+        ''' Home page. '''
         return render_template('home.html.j2')
+
+    @app.route('/layout')
+    def layout_view():
+        ''' Page shows status if lights in graphical view. '''
+        return render_template('layout.html.j2')
+
+    @app.route('/list')
+    def list_view():
+        ''' Page shows status of lights in list view. '''
+        return render_template('list.html.j2')
 
     # Get ledState from javascript client and broadcast
     @socketio.on('ledState')

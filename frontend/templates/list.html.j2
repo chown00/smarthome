@@ -1,0 +1,16 @@
+{% extends 'base.html.j2' %}
+
+{% block title %}List View{% endblock %}
+
+{% block head %}
+{{ super() }} <!-- Inherit base header -->
+<!-- Include SocketIO for JavaScript -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js" integrity="sha256-yr4fRk/GU1ehYJPAs8P4JlTgu0Hdsp4ZKrx8bDEDC3I=" crossorigin="anonymous"></script>
+{% endblock %}
+
+{% block content %}
+
+<script type="text/javascript" charset="utf-8">
+    {% include 'list.js.j2' %}
+</script>
+{% endblock %}

@@ -13,6 +13,7 @@ dist/
 build/
 *.egg-info/
 
+.vscode/*
 *.code-workspace
 
 config.py
