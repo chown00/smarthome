@@ -14,7 +14,7 @@ def create_app(test_config=None):
 
     @app.route('/layout')
     def layout_view():
-        ''' Page shows status if lights in graphical view. '''
+        ''' Page shows status of lights in graphical view. '''
         return render_template('layout.html.j2')
 
     @app.route('/list')

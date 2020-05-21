@@ -1,0 +1,14 @@
+var socket = io();    // Auto-discovery
+
+function turnOn(button) {
+    // What to do if "on" button is pressed
+    var number = parseInt(button.id.charAt(button.id.length-1));
+    socket.emit('ledState', JSON.stringify({ledNumber: number, state: 1})); // Send the next state for specific led to the server
+    document.getElementById("ledPicture" + number).setAttribute("fill", "yellow");
+}
+function turnOff(button) {
+    // What to do if "off" button is pressed
+    var number = parseInt(button.id.charAt(button.id.length-1));
+    socket.emit('ledState', JSON.stringify({ledNumber: number, state: 0})); // Send the next state for specific led to the server
+    document.getElementById("ledPicture" + number).setAttribute("fill", "black");
+}

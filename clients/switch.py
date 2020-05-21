@@ -1,11 +1,17 @@
 import socketio
 from gpiozero import LED
+import json
+
 from config import ipAddress
 
 socket = socketio.Client()
 
-led = LED(17)
-led.off()
+led1 = LED(17)
+led2 = LED(27)
+led3 = LED(22)
+led1.off()
+led2.off()
+led3.off()
 
 @socket.on('broadcastLEDState')
 def handle_message(broadcastLEDState):
@@ -13,12 +19,14 @@ def handle_message(broadcastLEDState):
     Handle message containing the next led state from the
     server.
     '''
-    if broadcastLEDState == 1:
-        led.on()
-    elif broadcastLEDState == 0:
-        led.off()
+    next_state = json.loads(broadcastLEDState)
+
+    if next_state['state'] == 1:
+        eval("led" + str(next_state['ledNumber'])).on()
+    elif next_state['state'] == 0:
+        eval("led" + str(next_state['ledNumber'])).off()
     else:
-        led.off()
+        eval("led" + str(next_state['ledNumber'])).off()
 
 if __name__ == '__main__':
     socket.connect(ipAddress)
