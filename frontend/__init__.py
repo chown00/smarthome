@@ -1,6 +1,8 @@
 from flask import Flask, render_template
 from flask_socketio import SocketIO, emit
 
+# Test
+
 def create_app(test_config=None):
     ''' Create and configure Flask application. '''
     app = Flask(__name__)
